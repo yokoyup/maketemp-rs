@@ -285,9 +285,12 @@ class Cargo(object):
         ドキュメントを作成します。
         
         - `project_dir` - プロジェクトのディレクトリーパス
-        - `out_dir`     - ドキュメントの出力先ディレクトリーのパス
+        - `out_dir`     - ドキュメントの出力先ディレクトリーのパス。`None`の場合はデフォルトの出力先に出力されます（targets）。
         """
-        args = [ self.__cargo_file,"doc","--no-deps","--target-dir",out_dir ]
+        args = [ self.__cargo_file,"doc","--no-deps" ]
+        if not out_dir is None:
+            args.extend([ "--target-dir",out_dir ])
+        
         env = os.environ
         st = subprocess.run(args,stdout=sys.stdout,stderr=sys.stderr,cwd=project_dir,env=env)
         if st.returncode != 0:
@@ -534,9 +537,12 @@ if __name__ == "__main__":
             )
         elif op == "cargo-doc":
             tgt = os.path.join(mydir,args["dir"])
+            out = None
+            if "out" in args:
+                out = os.path.join(mydir,args["out"])
             
             c = Cargo(envs["cargo"])
-            c.doc(tgt,os.path.join(mydir,args["out"]))
+            c.doc(tgt,out)
         elif op == "mkdir":
             os.mkdir(args["target"])
         elif op == "copy":

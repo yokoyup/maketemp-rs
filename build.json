@@ -9,7 +9,7 @@
         { "op":"cargo-test","args":{ "dir":"","report-dir":"reports","features":[],"threads":1 } }
     ],
     "doc":[
-        { "op":"cargo-doc","args":{ "dir":"","out":"doc" } }
+        { "op":"cargo-doc","args":{ "dir":"" } }
     ],
     "clean":[
         { "op":"delete","args":{ "target":"target" } },
