@@ -1,0 +1,22 @@
+{
+    "build":[
+        { "op":"cargo-build","args":{ "dir":"" } }
+    ],
+    "run":[
+        { "op":"cargo-run","args":{ "dir":"" } }
+    ],
+    "test":[
+        { "op":"cargo-test","args":{ "dir":"","report-dir":"reports","features":[],"threads":1 } }
+    ],
+    "doc":[
+        { "op":"cargo-doc","args":{ "dir":"","out":"doc" } }
+    ],
+    "clean":[
+        { "op":"delete","args":{ "target":"target" } },
+        { "op":"delete","args":{ "target":"reports" } }
+    ],
+    "hello":[
+        { "op":"command","args":{ "dir":"","args":[ "echo","Hello world!" ],"env":{} } },
+        { "op":"command","args":{ "dir":"","args":[ "echo","build.py is working." ],"env":{} } }
+    ]
+}
